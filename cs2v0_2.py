@@ -104,15 +104,3 @@ plt.ylim(400000,2000000)
 plt.title('Original, Actual and Predicted Number of tourists (unit: 1 million)')
 plt.legend()
 plt.show()
-
-df
-
-y_pred
-
-test_dates[seq_len:]
-
-X_input = np.array([70,1333,100])
-X_input = X_input.reshape((1,3,1))
-yhat = model.predict(X_input)
-print(yhat)
-
