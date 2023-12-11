@@ -116,6 +116,7 @@ dates_str = np.array(dates.values, dtype='datetime64[D]').astype(str).tolist()
 
 # df values to list
 exchange_rate = df['Exchange Rate'].values.tolist()
+oil = df['Oil'].values.tolist()
 dust = df['dust'].values.tolist()
 temperature = df['Temperature'].values.tolist()
 precipitation = df['Precipitation'].values.tolist()
@@ -124,10 +125,28 @@ windy = df['Windy'].values.tolist()
 original_data = original_y.tolist()
 predict_data = original_y[:-len(y_pred)].astype(int).tolist() + y_pred.astype(int).tolist()
 
-'''
+
 # first upload data to firestore
 doc_ref.set({
     u'date': dates_str,
+    u'exchange_rate': exchange_rate,
+    u'oil': oil,
+    u'dust': dust,
+    u'temperature': temperature,
+    u'precipitation': precipitation,
+    u'humidity': humidity,
+    u'windy': windy,
+    u'original_data': original_data,
+    u'predict_data': predict_data,
+})
+
+
+'''
+# update to firestore
+doc_ref.update({
+    u'date': dates_str,
+    u'exchange_rate': exchange_rate,
+    u'oil': oil,
     u'dust': dust,
     u'temperature': temperature,
     u'precipitation': precipitation,
@@ -137,19 +156,6 @@ doc_ref.set({
     u'predict_data': predict_data,
 })
 '''
-
-
-# update to firestore
-doc_ref.update({
-    u'date': dates_str,
-    u'dust': dust,
-    u'temperature': temperature,
-    u'precipitation': precipitation,
-    u'humidity': humidity,
-    u'windy': windy,
-    u'original_data': original_data,
-    u'predict_data': predict_data,
-})
 
 # plot actual vs predicted
 plt.figure(figsize=(14, 5))
